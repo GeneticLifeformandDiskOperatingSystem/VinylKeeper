@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.VinylKeeper" parent="Base.Theme.VinylKeeper" />
+    <style name="Theme.VinylKeeper.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.VinylKeeper.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.VinylKeeper.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

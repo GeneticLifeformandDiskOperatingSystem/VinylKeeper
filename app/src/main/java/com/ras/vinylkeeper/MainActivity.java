@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ras.vinylkeeper.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = "ras.vinylkeeoper";
+    public static final String TAG = "ras.vinylkeeper";
 
     ActivityMainBinding binding;
 
