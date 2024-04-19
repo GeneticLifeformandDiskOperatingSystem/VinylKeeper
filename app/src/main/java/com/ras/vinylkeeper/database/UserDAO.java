@@ -2,7 +2,6 @@ package com.ras.vinylkeeper.database;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
-import androidx.room.DeleteTable;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -19,9 +18,9 @@ public interface UserDAO {
     @Delete
     void delete(User user);
 
-    @Query("SELECT * FROM " + RecordDatabase.USER_TABLE + " ORDER BY username")
+    @Query("SELECT * FROM " + VinylDatabase.USER_TABLE + " ORDER BY username")
     List<User> getAllUsers();
 
-    @Query("DELETE FROM " + RecordDatabase.USER_TABLE)
+    @Query("DELETE FROM " + VinylDatabase.USER_TABLE)
     void deleteAll();
 }

@@ -8,7 +8,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.ras.vinylkeeper.database.RecordRepository;
+import com.ras.vinylkeeper.database.VinylRepository;
 import com.ras.vinylkeeper.database.entities.Record;
 import com.ras.vinylkeeper.databinding.ActivityAddRecordBinding;
 
@@ -22,7 +22,7 @@ public class AddRecordActivity extends AppCompatActivity {
     double rating = 0.0;
     int loggedInUserId = -1;
 
-    private RecordRepository repository;
+    private VinylRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,7 @@ public class AddRecordActivity extends AppCompatActivity {
         binding = ActivityAddRecordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        repository = RecordRepository.getRepository(getApplication());
+        repository = VinylRepository.getRepository(getApplication());
 
         binding.addRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override

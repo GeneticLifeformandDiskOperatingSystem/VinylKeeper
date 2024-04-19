@@ -3,11 +3,11 @@ package com.ras.vinylkeeper.database.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.ras.vinylkeeper.database.RecordDatabase;
+import com.ras.vinylkeeper.database.VinylDatabase;
 
 import java.util.Objects;
 
-@Entity(tableName = RecordDatabase.USER_TABLE)
+@Entity(tableName = VinylDatabase.USER_TABLE)
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;

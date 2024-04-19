@@ -17,21 +17,21 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {Record.class, User.class}, version = 1, exportSchema = false)
-public abstract class RecordDatabase extends RoomDatabase {
+public abstract class VinylDatabase extends RoomDatabase {
     public static final String RECORD_TABLE = "recordTable";
     public static final String USER_TABLE = "userTable";
-    private static final String DATABASE_NAME = "RecordDatabase";
-    private static volatile RecordDatabase INSTANCE;
+    private static final String DATABASE_NAME = "VinylDatabase";
+    private static volatile VinylDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static RecordDatabase getDatabase(final Context context){
+    static VinylDatabase getDatabase(final Context context){
         if(INSTANCE == null) {
             synchronized (Record.class) {
                 if(INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(
                                     context.getApplicationContext(),
-                                    RecordDatabase.class, DATABASE_NAME
+                                    VinylDatabase.class, DATABASE_NAME
                             )
                             .fallbackToDestructiveMigration()
                             .addCallback(addDefaultValues)

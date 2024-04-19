@@ -12,40 +12,40 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-public class RecordRepository {
+public class VinylRepository {
     private final RecordDAO recordDAO;
     private final UserDAO userDAO;
     private ArrayList<Record> allRecords;
-    private static RecordRepository repository;
+    private static VinylRepository repository;
 
-    public RecordRepository(Application application) {
-        RecordDatabase db = RecordDatabase.getDatabase(application);
+    public VinylRepository(Application application) {
+        VinylDatabase db = VinylDatabase.getDatabase(application);
         this.recordDAO = db.recordDAO();
         this.userDAO = db.userDAO();
         this.allRecords = (ArrayList<Record>) this.recordDAO.getAllRecords();
     }
 
-    public static RecordRepository getRepository(Application application) {
+    public static VinylRepository getRepository(Application application) {
         if(repository != null) {
             return repository;
         }
-        Future<RecordRepository> future = RecordDatabase.databaseWriteExecutor.submit(
-                new Callable<RecordRepository>() {
+        Future<VinylRepository> future = VinylDatabase.databaseWriteExecutor.submit(
+                new Callable<VinylRepository>() {
             @Override
-            public RecordRepository call() throws Exception {
-                return new RecordRepository(application);
+            public VinylRepository call() throws Exception {
+                return new VinylRepository(application);
             }
         });
         try {
             return future.get();
         } catch (InterruptedException | ExecutionException e) {
-            Log.d(MainActivity.TAG, "Problem getting RecordRepository, thread error");
+            Log.d(MainActivity.TAG, "Problem getting VinylRepository, thread error");
         }
         return null;
     }
 
     public ArrayList<Record> getAllRecords() {
-        Future<ArrayList<Record>> future = RecordDatabase.databaseWriteExecutor.submit(
+        Future<ArrayList<Record>> future = VinylDatabase.databaseWriteExecutor.submit(
                 new Callable<ArrayList<Record>>() {
                     @Override
                     public ArrayList<Record> call() throws Exception {
@@ -62,13 +62,13 @@ public class RecordRepository {
     }
 
     public void insertRecord(Record record) {
-        RecordDatabase.databaseWriteExecutor.execute(() -> {
+        VinylDatabase.databaseWriteExecutor.execute(() -> {
             recordDAO.insert(record);
         });
     }
 
     public void insertUser(User... user) {
-        RecordDatabase.databaseWriteExecutor.execute(() -> {
+        VinylDatabase.databaseWriteExecutor.execute(() -> {
             userDAO.insert(user);
         });
     }

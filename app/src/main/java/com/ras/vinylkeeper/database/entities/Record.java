@@ -4,14 +4,14 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
-import com.ras.vinylkeeper.database.RecordDatabase;
+import com.ras.vinylkeeper.database.VinylDatabase;
 import com.ras.vinylkeeper.database.typeConverter.LocalDateTypeConverter;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Entity(tableName = RecordDatabase.RECORD_TABLE)
+@Entity(tableName = VinylDatabase.RECORD_TABLE)
 public class Record {
     @PrimaryKey(autoGenerate = true)
     private int id;

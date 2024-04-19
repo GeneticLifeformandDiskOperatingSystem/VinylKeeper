@@ -14,6 +14,6 @@ public interface RecordDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Record record);
 
-    @Query("SELECT * FROM " + RecordDatabase.RECORD_TABLE)
+    @Query("SELECT * FROM " + VinylDatabase.RECORD_TABLE)
     List<Record> getAllRecords();
 }
