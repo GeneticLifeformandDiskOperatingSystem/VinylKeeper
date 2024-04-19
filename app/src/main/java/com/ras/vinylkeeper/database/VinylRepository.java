@@ -3,6 +3,8 @@ package com.ras.vinylkeeper.database;
 import android.app.Application;
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+
 import com.ras.vinylkeeper.MainActivity;
 import com.ras.vinylkeeper.database.entities.Record;
 import com.ras.vinylkeeper.database.entities.User;
@@ -71,5 +73,13 @@ public class VinylRepository {
         VinylDatabase.databaseWriteExecutor.execute(() -> {
             userDAO.insert(user);
         });
+    }
+
+    public LiveData<User> getUserByUserName(String username) {
+        return userDAO.getUserByUserName(username);
+    }
+
+    public LiveData<User> getUserByUserId(int userId) {
+        return userDAO.getUserByUserId(userId);
     }
 }

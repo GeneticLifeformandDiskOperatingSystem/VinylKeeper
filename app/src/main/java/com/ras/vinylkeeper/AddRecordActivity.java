@@ -1,5 +1,7 @@
 package com.ras.vinylkeeper;
 
+import static com.ras.vinylkeeper.MainActivity.LOGGED_OUT;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,12 +34,15 @@ public class AddRecordActivity extends AppCompatActivity {
 
         repository = VinylRepository.getRepository(getApplication());
 
+        Intent intent = getIntent();
+        loggedInUserId = intent.getIntExtra(MainActivity.MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+
         binding.addRecordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getRecordInformation();
                 insertRecord();
-                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext()));
+                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), loggedInUserId));
             }
         });
     }
@@ -72,6 +77,7 @@ public class AddRecordActivity extends AppCompatActivity {
     }
 
     static Intent addRecordIntentFactory(Context context) {
-        return new Intent(context, AddRecordActivity.class);
+        Intent intent = new Intent(context, AddRecordActivity.class);
+        return intent;
     }
 }
