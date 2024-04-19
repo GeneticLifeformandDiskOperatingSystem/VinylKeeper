@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.ras.vinylkeeper.MainActivity;
 import com.ras.vinylkeeper.database.entities.Record;
+import com.ras.vinylkeeper.database.entities.User;
 
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
@@ -12,13 +13,15 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 public class RecordRepository {
-    private RecordDAO recordDAO;
+    private final RecordDAO recordDAO;
+    private final UserDAO userDAO;
     private ArrayList<Record> allRecords;
     private static RecordRepository repository;
 
     public RecordRepository(Application application) {
         RecordDatabase db = RecordDatabase.getDatabase(application);
         this.recordDAO = db.recordDAO();
+        this.userDAO = db.userDAO();
         this.allRecords = (ArrayList<Record>) this.recordDAO.getAllRecords();
     }
 
@@ -61,6 +64,12 @@ public class RecordRepository {
     public void insertRecord(Record record) {
         RecordDatabase.databaseWriteExecutor.execute(() -> {
             recordDAO.insert(record);
+        });
+    }
+
+    public void insertUser(User... user) {
+        RecordDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.insert(user);
         });
     }
 }

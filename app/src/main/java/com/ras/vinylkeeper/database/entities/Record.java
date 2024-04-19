@@ -15,19 +15,20 @@ import java.util.Objects;
 public class Record {
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int owner;
+    private int ownerUserId;
     private String artist;
     private String album;
     private int year;
     private double rating;
     private LocalDateTime dateAdded;
 
-    public Record(String artist, String album, int year, double rating) {
+    public Record(String artist, String album, int year, double rating, int ownerUserId) {
         this.artist = artist;
         this.album = album;
         this.year = year;
         this.rating = rating;
         this.dateAdded = LocalDateTime.now();
+        this.ownerUserId = ownerUserId;
     }
 
     public int getId() {
@@ -38,12 +39,12 @@ public class Record {
         this.id = id;
     }
 
-    public int getOwner() {
-        return owner;
+    public int getOwnerUserId() {
+        return ownerUserId;
     }
 
-    public void setOwner(int owner) {
-        this.owner = owner;
+    public void setOwnerUserId(int ownerUserId) {
+        this.ownerUserId = ownerUserId;
     }
 
     public String getArtist() {
@@ -91,11 +92,11 @@ public class Record {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Record record = (Record) o;
-        return id == record.id && owner == record.owner && Double.compare(rating, record.rating) == 0 && Objects.equals(artist, record.artist) && Objects.equals(album, record.album) && Objects.equals(year, record.year) && Objects.equals(dateAdded, record.dateAdded);
+        return id == record.id && ownerUserId == record.ownerUserId && Double.compare(rating, record.rating) == 0 && Objects.equals(artist, record.artist) && Objects.equals(album, record.album) && Objects.equals(year, record.year) && Objects.equals(dateAdded, record.dateAdded);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, owner, artist, album, year, rating, dateAdded);
+        return Objects.hash(id, ownerUserId, artist, album, year, rating, dateAdded);
     }
 }

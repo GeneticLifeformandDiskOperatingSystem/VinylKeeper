@@ -67,7 +67,7 @@ public class AddRecordActivity extends AppCompatActivity {
         if(artist.isEmpty() || album.isEmpty()) {
             return;
         }
-        Record record = new Record(artist, album, year, rating);
+        Record record = new Record(artist, album, year, rating, loggedInUserId);
         repository.insertRecord(record);
     }
 
