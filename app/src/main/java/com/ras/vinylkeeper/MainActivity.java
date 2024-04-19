@@ -7,10 +7,12 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ras.vinylkeeper.database.VinylRepository;
 import com.ras.vinylkeeper.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "ras.vinylkeeper";
+    private VinylRepository repository;
 
     ActivityMainBinding binding;
 
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        repository = VinylRepository.getRepository(getApplication());
 
         binding.buttonAddRecord.setOnClickListener(new View.OnClickListener() {
             @Override
