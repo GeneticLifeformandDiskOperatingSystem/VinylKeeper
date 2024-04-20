@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
                 showLogoutDialog();
             }
         });
+
+        binding.adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = AdminActivity.adminIntentFactory(getApplicationContext());
+                startActivity(intent);
+
+            }
+        });
     }
 
     private void showLogoutDialog() {
@@ -108,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
         userObserver.observe(this, user -> {
             this.user = user;
             if (user != null) {
+                if(this.user.isAdmin()) {
+                    binding.adminButton.setVisibility(View.VISIBLE);
+                }
                 invalidateOptionsMenu();
             }
         });

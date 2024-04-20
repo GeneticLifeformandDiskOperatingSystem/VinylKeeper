@@ -42,4 +42,16 @@
         android:layout_margin="16dip"
         />
 
+    <Button
+        android:id="@+id/adminButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dip"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
