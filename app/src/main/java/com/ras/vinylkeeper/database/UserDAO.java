@@ -20,7 +20,7 @@ public interface UserDAO {
     void delete(User user);
 
     @Query("SELECT * FROM " + VinylDatabase.USER_TABLE + " ORDER BY username")
-    List<User> getAllUsers();
+    LiveData<List<User>> getAllUsers();
 
     @Query("DELETE FROM " + VinylDatabase.USER_TABLE)
     void deleteAll();

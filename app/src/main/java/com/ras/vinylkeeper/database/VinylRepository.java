@@ -10,6 +10,7 @@ import com.ras.vinylkeeper.database.entities.Record;
 import com.ras.vinylkeeper.database.entities.User;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -77,6 +78,10 @@ public class VinylRepository {
 
     public LiveData<User> getUserByUserName(String username) {
         return userDAO.getUserByUserName(username);
+    }
+
+    public LiveData<List<User>> getAllUserNames() {
+        return userDAO.getAllUsers();
     }
 
     public LiveData<User> getUserByUserId(int userId) {
